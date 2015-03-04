@@ -32,10 +32,25 @@ public class ObjectStack {
 	}
 	
 	/**
+	 * Removes an object at a certain position and moves everything else up the stack
+	 * @param position The position in the stack
+	 */
+	public void remove(int position)
+	{
+		ArrayList a = new ArrayList();
+		for(int x = 0; x < list.size(); x++)
+		{
+			if(position != x)
+				a.add(list.get(x));
+		}
+		list = a;
+	}
+	
+	/**
 	 * Removes the topmost object from the stack
 	 */
 	public void remove(){
-		list.remove(size());
+		list.remove(size()-1);
 	}
 	
 	/**
