@@ -1,5 +1,8 @@
 package gridProj;
 
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+
 import info.gridworld.grid.*;
 
 public class BoundedMultiGrid extends BoundedGrid {
@@ -9,14 +12,55 @@ public class BoundedMultiGrid extends BoundedGrid {
 		super(rows, cols);
 	}
 	
-	public void add(Object o, int row, int col)
+	public void add(Object ObjectToAdd, int row, int col)
 	{
-		Location loc = new Location(row, col);
-		if(get(loc) == null)
-			put(loc, new ObjectStack());
-		Object r = get(loc);
-		if(r instanceof ObjectStack)
-			((ObjectStack) r).add(o);
+		Location LocationToAdd = new Location(row, col);
+		Object CurrentObject = get(LocationToAdd);
+		if(CurrentObject == null)
+			put(LocationToAdd, new ObjectStack());
+		if(CurrentObject instanceof ObjectStack)
+			((ObjectStack) CurrentObject).add(ObjectToAdd);
 	}
 	
+	public Object get(Location locationToGet)
+	{
+		if(super.get(locationToGet) == null)
+			super.put(locationToGet, new ObjectStack());
+		
+		if(!isValid(locationToGet))
+			throw new InvalidParameterException();
+		
+		ObjectStack stack = (ObjectStack) super.get(locationToGet);
+		
+		return stack.get();
+	}
+	
+	public Object put(Location locationToPut, Object objectToPut)
+	{
+		ObjectStack stack = (ObjectStack) get(locationToPut);
+		return stack.add(objectToPut);
+	}
+	
+	public boolean isValid(Location locationToCheck)
+	{
+		return get(locationToCheck) instanceof ObjectStack;
+	}
+	
+	public Object remove(Location locationToRemove)
+	{
+		ObjectStack stack = (ObjectStack) get(locationToRemove);
+		return stack.remove();
+		
+	}
+	
+	public Object getOccupiedLocations()
+	{
+		ArrayList locations = super.getOccupiedLocations();
+		for(ObjectStack stack : locations){
+			if(obj) 
+		}
+	}
+	
+	
+
 }

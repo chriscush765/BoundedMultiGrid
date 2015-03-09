@@ -10,8 +10,9 @@ public class ObjectStack {
 	 * Adds an object on top of the stack
 	 * @param obj the object to add
 	 */
-	public void add(Object obj){
+	public Object add(Object obj){
 		list.add(obj);
+		return obj;
 	}
 	
 	/**
@@ -19,8 +20,10 @@ public class ObjectStack {
 	 * @param position the position in the stack
 	 * @param obj the object to add
 	 */
-	public void add(int position, Object obj){
+	public Object add(int position, Object obj){
 		list.add(position, obj);
+		return obj;
+		
 	}
 	
 	/**
@@ -49,15 +52,15 @@ public class ObjectStack {
 	/**
 	 * Removes the topmost object from the stack
 	 */
-	public void remove(){
-		list.remove(size()-1);
+	public Object remove(){
+		return list.remove(size()-1);
 	}
 	
 	/**
 	 * @return returns the stack as an ArrayList
 	 */
-	public ArrayList get(){
-		return list;
+	public Object get(){
+		return list.get(size() - 1);
 	}
 	
 	/**
