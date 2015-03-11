@@ -53,11 +53,16 @@ public class BoundedMultiGrid extends BoundedGrid {
 		
 	}
 	
-	public Object getOccupiedLocations()
+	//Chris I don't know what this does!! no joovaduck = bad
+	//TODO put some freaking documentation
+	public ArrayList getOccupiedLocations()
 	{
 		ArrayList locations = super.getOccupiedLocations();
 		for(ObjectStack stack : locations){
-			if(obj) 
+			//using get() will return a Location object
+			//not sure how to get the ObjectStack from there. maybe instanceof, but I'm too lazy
+			if(stack.get().get())
+				
 		}
 	}
 	
